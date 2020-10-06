@@ -5,7 +5,7 @@ const conversasIniciais = [
             {
             'horario': '10:15',
             'conteudo': 'teste',
-            'verde': false
+            'verde': true
             },
             {
             'horario': '10:15',

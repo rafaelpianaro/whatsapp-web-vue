@@ -20,12 +20,14 @@
             <div class="barra-superior">
               <span>{{ conversas[indiceAtivo].usuario }}</span>
             </div>
-            <Mensagem v-for="(mensagem, indice) in conversas[indiceAtivo].mensagens" :key="indice" :conteudo="mensagem.conteudo"/>
+            <div class="lista-mensagens">
+              <Mensagem v-for="(mensagem, indice) in conversas[indiceAtivo].mensagens" :key="indice" 
+              :conteudo="mensagem.conteudo" :verde="mensagem.verde" :horario="mensagem.horario" />
+            </div>
+            <div class="barra-inferior">
+                <input type="text" class="input" placeholder="Insira sua mensagem">
+            </div>
           </div>
-          <div class="barra-inferior">
-              <input type="text" class="input" placeholder="Insira sua mensagem">
-          </div>
-          
         </div>
       </div>
     </section>
@@ -34,12 +36,13 @@
 
 <script>
 import conversasIniciais from './dados'
-import Mensagem from './component/Mensagem'
+import Mensagem from './components/Mensagem'
 export default {
   data(){
     return {
       conversas: conversasIniciais,
-      indiceAtivo: 0
+      indiceAtivo: 0,
+      conteudoNovaMensagem
     }
   },
   components: {
@@ -48,10 +51,27 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
+.barra-inferior {
+    bottom:0;
+    width: 76.4%;
+    padding: 10px;
+    position: absolute;
+    background: #f0f0f0;
+}
+
+.barra-inferior input {
+    border:none;
+    padding: 10px;
+    margin: 0 50px;
+    width: 93%;
+    border-radius: 15px;
+    font-size: 16px;
+}
 
 .lista-mensagens{
-    height: 90%;
+    height: 85%;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;

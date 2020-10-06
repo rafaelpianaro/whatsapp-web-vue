@@ -11,11 +11,8 @@ export default {
 }
 </script>
 
-<style>
+<style >
 
-.verde {
-    background: green !important;
-}
 .mensagem {
     font-size: 14px;
     box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 0.5px 0px;;
@@ -25,10 +22,12 @@ export default {
     border-radius: 5px;
     width: fit-content;
 }
+
 .mensagem.verde {
     background: rgb(220, 248, 198);
     align-self:  flex-end;
 }
+
 .mensagem span {
     margin-left: 25px;
     font-size: 11px;
