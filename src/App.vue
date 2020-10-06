@@ -6,7 +6,7 @@
           <!-- esquerda -->
           <div class="column is-3 lista-de-conversas">
             <div class="barra-superior" />
-            <div class="item" v-for="conversa in conversas" :key="conversa">
+            <div class="item" v-for="(conversa, index) in conversas" :key="index" @click="indiceAtivo = index">
               <div class="title is-6">
                 {{ conversa.usuario }}
               </div>
@@ -18,9 +18,14 @@
           <!-- direita -->
           <div class="column conversa-ativa">
             <div class="barra-superior">
-              <span>Usuário</span>
+              <span>{{ conversas[indiceAtivo].usuario }}</span>
             </div>
+            <Mensagem v-for="(mensagem, indice) in conversas[indiceAtivo].mensagens" :key="indice" :conteudo="mensagem.conteudo"/>
           </div>
+          <div class="barra-inferior">
+              <input type="text" class="input" placeholder="Insira sua mensagem">
+          </div>
+          
         </div>
       </div>
     </section>
@@ -29,25 +34,71 @@
 
 <script>
 import conversasIniciais from './dados'
+import Mensagem from './component/Mensagem'
 export default {
   data(){
     return {
-      conversas: conversasIniciais
+      conversas: conversasIniciais,
+      indiceAtivo: 0
     }
+  },
+  components: {
+    Mensagem
   }
 }
 </script>
 
 <style scoped>
-  .columns{
-    min-height: 800px;
+
+.lista-mensagens{
+    height: 90%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.column {
+  padding: 0 !important;
+}
+  .columns {
+    min-height: 750px;
     box-shadow: 0 3rem -1rem rgba(10,10,10,.2);
   }
 
-  .lista-de-conversas{
+  .lista-de-conversas {
     background: white;
   }
-  .conversa-ativa{
+
+  .conversa-ativa {
     background: #E5DDD5;
+  }
+
+  .barra-superior {
+    margin: 0;
+    height: 50px;
+    background: #EDEDED;
+    border-right: 1px solid #E1E1E1;
+    border-bottom: 1px solid rgb(200, 200, 200);
+  }
+
+  .barra-superior span {
+    line-height: 50px;
+    margin-left: 25px;
+    font-weight: 500;
+  }
+
+  .item {
+    border-bottom: 1px solid #F2F2F2;
+    padding: 15px 30px;
+    margin-bottom: 0 !important;
+  }
+
+  .subtitle {
+    color: gray;
+  }
+
+  .item:hover {
+    background: #F5F5F5;
+    cursor: pointer;
   }
 </style>
