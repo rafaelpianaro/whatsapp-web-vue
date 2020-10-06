@@ -25,7 +25,8 @@
               :conteudo="mensagem.conteudo" :verde="mensagem.verde" :horario="mensagem.horario" />
             </div>
             <div class="barra-inferior">
-                <input type="text" class="input" placeholder="Insira sua mensagem">
+                <input type="text" class="input" placeholder="Insira sua mensagem" 
+                v-model="conteudoNovaMensagem" v-on:keyup.enter="enviarMensagem">
             </div>
           </div>
         </div>
@@ -42,11 +43,23 @@ export default {
     return {
       conversas: conversasIniciais,
       indiceAtivo: 0,
-      conteudoNovaMensagem
+      conteudoNovaMensagem: ''
     }
   },
   components: {
     Mensagem
+  },
+  methods: {
+    enviarMensagem(){
+      let horarioAtual = new Date().getHours() + ":" + new Date().getMinutes()
+      let novaMensagem = {
+        horario: horarioAtual,
+        conteudo: this.conteudoNovaMensagem,
+        verde: true
+      }
+      this.conversas[this.indiceAtivo].mensagens.push(novaMensagem)
+      this.conteudoNovaMensagem = ''
+    }
   }
 }
 </script>
