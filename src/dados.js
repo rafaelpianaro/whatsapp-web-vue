@@ -6,16 +6,18 @@ const conversasIniciais = [
             'horario': '10:15',
             'conteudo': 'teste',
             'verde': true
-            },
-            {
-            'horario': '10:15',
-            'conteudo': 'conversa 2',
-            'verde': false
             }
         ]
     },
     {
-        'usuario': 'Usuario 2'
+        'usuario': 'Usuario 2',
+        'mensagens': [
+            {
+            'horario': '10:15',
+            'conteudo': 'teste',
+            'verde': true
+            }
+        ]
     },
 ]
 
